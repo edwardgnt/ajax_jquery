@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jquery Ajax</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="result"></div>
+        <ul id="users"></ul>
+    </div>
+    
+
+    <script>
+    $(document).ready(function() {
+        // LOAD METHOD
+        // $('#result').load('test.html', function(responseTxt, statusTxt, xhr) {
+        //     if(statusTxt == "success"){
+        //         alert('It went fine');
+        //     } else if (statusTxt == "error") {
+        //         alert("Error: " + xhr.statusText);
+        //     }
+        // });
+
+
+        // GET METHOD
+        // $.get('test.html', function(data) {
+        //     $('#result').html(data);
+        // });
+
+
+        // GET JSON METHOD
+        // $.getJSON('users.json', function(data) {
+        //     $.each(data, function(index, user) {
+        //         $('ul#users').append('<li>'+user.name+'</li>');
+        //     });
+        // });
+
+        // AJAX METHOD
+        $.ajax({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/posts',
+            dataType: 'json'
+        }).done(function(data) {
+            console.log(data);
+            $.map(data, function(post, i) {
+                $('#result').append('<h3>'+post.title+'</h3><p>'+post.body+'</p>'); 
+            });
+        });
+
+    });
+    </script>
+</body>
+</html>
